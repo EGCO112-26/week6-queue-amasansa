@@ -5,25 +5,21 @@
 #include "Queue.h"
 
 int main(int argc , char **argv) {
-    NodePtr headPtr=NULL;
-    NodePtr tailPtr=NULL;
-    
     Queue q;
-    q.headPtr=NULL;
-    q.tailPtr=NULL;
-    q.size=0;
+    q.headPtr = NULL;
+    q.tailPtr = NULL;
+    q.size = 0;
 
     int i, order, customer_no = 1;
     int price, cash;
 
-    for(i=1; i<argc; i++){
-        if(strcmp(argv[i],"x")==0){
-            // กรณีลูกค้าจ่ายเงิน (Dequeue)
+    for(i = 1; i < argc; i++){
+        if(strcmp(argv[i], "x") == 0){
             if(q.size > 0){
                 order = dequeue_struct(&q);
                 
-                printf("My order is %d\n", order);
                 printf("Customer no: %d\n", customer_no++);
+                printf("My order is %d\n", order);
                 
                 switch(order) {
                     case 1:
@@ -47,19 +43,21 @@ int main(int argc , char **argv) {
                 if(price > 0) {
                     printf("You have to pay %d\n", price);
                     
-                    int total_paid = 0;
-                    do {
+                    while(1) {
                         printf(":Cash:");
-                        scanf("%d", &cash);
-                        total_paid += cash;
                         
-                        if(total_paid < price) {
+                        if(scanf("%d", &cash) != 1) {
+                            break; 
                         }
-                    } while(total_paid < price);
-
-                    printf("Thank you\n");
-                    if(total_paid > price) {
-                        printf("Change is:%d\n", total_paid - price);
+                        
+                        if(cash >= price) {
+                            printf("Thank you\n");
+                            if(cash > price) {
+                                printf("Change is:%d\n", cash - price);
+                            }
+                            break;
+                        } else {
+                        }
                     }
                 }
                 printf("===============================\n");
