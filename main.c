@@ -18,13 +18,14 @@ int main(int argc , char **argv) {
             if(q.size > 0){
                 order = dequeue_struct(&q);
                 
-                printf("Customer no: %d\n", customer_no++);
                 printf("My order is %d\n", order);
+                
+                printf("Cutomer no: %d\n", customer_no++); 
                 
                 switch(order) {
                     case 1:
                         printf("Ramen\n");
-                        price = 200;
+                        price = 200; 
                         break;
                     case 2:
                         printf("Somtum\n");
@@ -46,21 +47,19 @@ int main(int argc , char **argv) {
                     while(1) {
                         printf(":Cash:");
                         
-                        if(scanf("%d", &cash) != 1) {
-                            break; 
-                        }
+                        if(scanf("%d", &cash) != 1) break;
                         
                         if(cash >= price) {
                             printf("Thank you\n");
                             if(cash > price) {
-                                printf("Change is:%d\n", cash - price);
+                                printf("Change is:%d\n", cash - price); 
                             }
                             break;
                         } else {
                         }
                     }
                 }
-                printf("===============================\n");
+                
 
             } else {
                 printf("The queue is empty\n");
@@ -70,6 +69,7 @@ int main(int argc , char **argv) {
             enqueue_struct(&q, atoi(argv[i]));
         }
     }
+    printf("===============================\n");
 
     printf("There are %d ppl left in the queue\n", q.size);
 
